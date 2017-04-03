@@ -42,9 +42,18 @@ public class FileUtils {
 	
 	private ArrayList<Reservation> readBookings() { //reads booked seats and adds them to arraylist, returns said arraylist
 		ArrayList<Reservation> returnable = new ArrayList<>();
-		while (bookingReader.hasNextLine()) {			
-			returnable.add(readReservation(bookingReader.nextLine()));
+		ArrayList<String> stringList = new ArrayList<>();
+		
+		while (bookingReader.hasNextLine()) {
+			stringList.add(bookingReader.nextLine());
 		}
+		
+		for (String item : stringList) {
+			returnable.add(readReservation(item));
+		}
+		/*while (bookingReader.hasNextLine()) {			
+			returnable.add(readReservation(bookingReader.nextLine()));
+		}*/
 		//System.out.println(returnable); //DELETE
 		return returnable;
 	}
@@ -52,7 +61,7 @@ public class FileUtils {
 	public void writeBookings(ArrayList<Reservation> list) throws IOException { //Rewrites bookings file using both old and new reservations
 		FileWriter writer = new FileWriter(bookings);
 		for (Reservation item : list) {
-			writer.append(item+"\n");
+			writer.append(item.toString() + System.getProperty("line.separator"));
 		}
 		writer.close();
 	}

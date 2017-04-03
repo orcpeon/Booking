@@ -54,7 +54,9 @@ public class Reservation {
 		for (Seat seat : seats) {
 			sb.append(seat.toString()+",");
 		}
+		if (!sb.toString().isEmpty()) {
 		sb.deleteCharAt(sb.length()-1);
+		}
 		return sb.toString();		
 	}
 

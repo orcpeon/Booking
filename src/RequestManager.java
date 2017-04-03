@@ -1,6 +1,6 @@
 
 public interface RequestManager {
 
-	void processRequst(Request request);
+	void processRequest(Request request);
 	
 }
